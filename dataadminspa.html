@@ -1,0 +1,178 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
+    require 'functions.php';
+
+    //pagination
+    $jumlahDataHalamanPerHalaman = 10;
+    $jumlahData =count(query("SELECT * FROM project"));
+    $jumlahHalaman = ceil($jumlahData / $jumlahDataHalamanPerHalaman);
+    $halamanAktif = (isset($_GET["halaman"]) ) ? $_GET["halaman"] : 1;
+    $awalData = ( $jumlahDataHalamanPerHalaman * $halamanAktif ) - $jumlahDataHalamanPerHalaman;
+
+    $extract = query("SELECT * FROM project ORDER BY id DESC LIMIT $awalData, $jumlahDataHalamanPerHalaman");
+    //endpagination
+    
+    if( isset($_POST["cari"]) ){
+        $extract = cari($_POST["keyword"]);
+    }
+    //jumlah keseluruhan pserta
+        $data_peserta = mysqli_query($conn, "SELECT * FROM project");
+        $jumlahpeserta = mysqli_num_rows($data_peserta) ;
+    //jumlah konsen jaringan
+        $datapesertajaringan = mysqli_query($conn, "SELECT * FROM project WHERE konsentrasi='jaringan'");
+        $jumlahpesertajaringan = mysqli_num_rows($datapesertajaringan);
+    //jumlah konsen program
+        $datapesertaprogram = mysqli_query($conn, "SELECT * FROM project WHERE konsentrasi='program'");
+        $jumlahpesertaprogram = mysqli_num_rows($datapesertaprogram);
+    //jumlah konsen hardware
+        $datapesertahardware = mysqli_query($conn, "SELECT * FROM project WHERE konsentrasi='hardware'");
+        $jumlahpesertahardware = mysqli_num_rows($datapesertahardware);
+    //jumlah konsen multimeia
+        $datapesertamultimedia = mysqli_query($conn, "SELECT * FROM project WHERE konsentrasi='multimedia'");
+        $jumlahpesertamultimedia = mysqli_num_rows($datapesertamultimedia);
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" href="img/REVISI LOGO 2.0.png">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="container-fluid" style="padding-left: 0">
+        <div class="row" style="margin: auto">
+            <div class="col-md-2 sidebar" align=center>
+                <div class="sidebar">
+                    <br><br><br>
+                    <h1>ADMIN</h1>
+                    <img src="img/admin/<?php echo $_SESSION['gambaradmin'] ?>" width="50px"
+                        class="img-fluid rounded-circles mt-3" alt="Responsive image">
+                    <a href="index.php">
+                        <button id="btnGroupDrop1" type="button" aria-haspopup="true" aria-expanded="false"
+                            class="admin">Data Peserta
+                        </button>
+                        <br><br>
+                    </a>
+                    <a href="index.php">
+                        <button id="btnGroupDrop1" type="button" aria-haspopup="true" aria-expanded="false"
+                            class="admin">Data Admin
+                        </button>
+                        <br><br>
+                        <a href="logout.php">
+                            <button id="btnGroupDrop1" type="button" aria-haspopup="true" aria-expanded="false"
+                                class="keluar" style="margin-left: 40%;"><i class="fas fa-sign-out-alt fa-lg"></i>
+                                Keluar
+                            </button>
+                        </a>
+                </div>
+            </div>
+            <div class="col-md-11" style="padding-left: 50px; margin-left: 210px;">
+                <div class="row">
+                    <div class="col-11">
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-11">
+
+                                    <a href="tambah.php"><input class="btn btn-info float-right tambah"
+                                            style="margin-top: 80px;" type=" submit" value="Tambah Admin"></a>
+                                    <h3 style="margin-left: 50px;">Data Admin</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive container">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">Status Keanggotan</th>
+                                        <th scope="col">Jenis Kelamin</th>
+                                        <th scope="col">Username/NRA</th>
+                                        <th scope="col">Password</th>
+                                        <th scope="col">No.Hp</th>
+                                        <th scope="col">Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach( $extract as $row) : ?>
+                                    <tr class="table1">
+                                        <td>
+                                            <a href="img/<?= $row["gambar"] ?><img src=" img/<?= $row["gambar"] ?></a>
+                                                <p><?= $row["nama"]; ?></p>
+                                        </td>
+                                        <td><?= $row["noreg"]; ?></td>
+                                        <td><?= $row["konsentrasi"]; ?></td>
+                                        <td><?= $row["jkl"]; ?></td>
+                                        <td><?= $row["alamat"]; ?></td>
+                                        <td><?= $row["tempat"]; ?><?= $row["tanggal"]; ?></td>
+                                        <td>
+                                            <div class="row">
+                                                <a href="ubah.php?id=<?= $row["id"] ?><i
+                                                            class=" fas fa-edit fa-lg ml-2"></i></a>
+                                                <a href="hapus.php?id=<?= $row["id"]?><i
+                                                        class=" fas fa-trash-alt fa-lg mr-3"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center fixed-bottom mb-3">
+
+
+                                        <li class="page-item ">
+                                            <a class="page-link rounded-circle"
+                                                href="index.php?halaman=<?= $halamanAktif - 1; ?>" aria-label="">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </a>
+                                        </li>
+
+
+                                        <?php for($i= 1; $i <= $jumlahHalaman; $i++) : ?>
+                                        <?php if( $i == $halamanAktif ) : ?>
+                                        <a class="page-link rounded-circle" href="index.php?halaman=<?= $i ?>"
+                                            style="font-weight: bold; color:red">
+                                            <li class="page-item"><?= $i; ?></li>
+                                        </a>
+                                        <?php else : ?>
+                                        <li class="page-item"><a class="page-link rounded-circle"
+                                                href="index.php?halaman=<?= $i ?>"><?= $i; ?></a></li>
+                                        <?php endif ; ?>
+                                        <?php endfor ; ?>
+                                        <?php if( $halamanAktif < $jumlahHalaman ) : ?>
+                                        <li class="page-item">
+                                            <a class="page-link rounded-circle"
+                                                href="index.php?halaman=<?= $halamanAktif + 1; ?>" aria-label="Next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </a>
+                                        </li>
+                                        <?php endif ; ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

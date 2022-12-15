@@ -1,0 +1,213 @@
+@font-face {
+    font-family: 'PoppinsBold';
+    src: url(./font/Poppins-Bold.otf);
+}
+@font-face {
+    font-family: 'PoppinsMedium';
+    src: url(./font/Poppins-Medium.otf);
+}
+
+@font-face{
+    font-family: 'PoppinsSemiBold';
+    src: url(./font/Poppins-SemiBold.otf);
+}
+
+@font-face{
+    font-family: 'PoppinsLightItalic';
+    src: url(./font/Poppins-LightItalic.otf);
+}
+
+@font-face{
+    font-family: 'PoppinsRegular';
+    src: url(./font/Poppins-Regular.otf);
+}
+
+.sidebar {
+    background-image: url("img/sidebar.png");
+    width: 250px;
+    height: 655px;
+    background-size: cover;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    padding-left: 0;
+
+    h1{
+        font-family: 'PoppinsBold';
+        color: #FFFFFF;
+    }
+    
+    p{
+        font-family:'PoppinsMedium';
+    }
+}
+
+ .card  {
+     background: #F8F8F8 0% 0% no-repeat padding-box;
+     box-shadow: 0px 0px 20px #00000029;
+     border-radius: 15px;
+     text-align: center;
+     margin-top: 50px;
+     margin-left: 10px;
+     margin-bottom: 20px;
+}
+
+ .cari {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 30px #00000029;
+    border: 1px solid #707070;
+    border-radius: 50px;
+    font-family: 'PoppinsMedium';
+    margin-left: 50px;
+    width: 30px;
+ }
+ .tambah {
+    background-color: #7AC9D0;
+    height: 40px; 
+    width: 150px; 
+    margin-top: -100;
+    box-shadow: 2px 2px 30px #00000057;
+    font-family: 'PoppinsSemiBold';
+
+ }
+
+.keluar{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 2px 2px 30px #048190;
+    border-radius: 15px; 
+    font-family: 'PoppinsMedium';
+    width: 120px;
+    height: 40px;
+}
+table { border-collapse: separate; }
+td { border: solid 1px #000; }
+tr:first-child td:first-child { border-top-left-radius: 10px; }
+tr:first-child td:last-child { border-top-right-radius: 10px; }
+tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+tr:last-child td:last-child { border-bottom-right-radius: 10px; }
+
+.table{
+    border: 1px solid #7AC9D0;
+    border-radius: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-family: 'PoppinsMedium';
+    width: 90%;
+    margin: 30px;
+}
+
+.table1{
+    border: 1px solid #7AC9D0;
+    border-radius: 15px;
+}
+
+.table2{
+    border: 1px solid #7AC9D0;
+    border-radius: 15px;
+
+}
+
+.pagination{
+    margin-top: 20px;
+    margin-left: 70px;
+}
+
+// sisfo&login
+.logsis{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+h3{
+        margin-left: 80px;
+        margin-top: 80px;
+        font-family: 'PoppinsSemiBold';
+        margin-bottom: 20px;
+}
+.jumbotron1{
+    background: transparent;
+    width: 40%;
+    margin-left: 20px;
+    height: 60px;
+    
+    form input{
+        border: none;
+        font-family: 'PoppinsMedium';
+    }
+}
+.rumah{
+    width: 200px;
+    height: 60px;
+    background-color: #08808E;
+    box-shadow: 2px 2px 30px #0000001A;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin-left: 100px;
+}
+
+.masuk{
+    border-radius: 40px; 
+    margin-left: 100px; 
+    height: 40px; 
+    width: 130px; 
+    margin-top: 20px; 
+    background-color: #08808E;
+    box-shadow: 2px 2px 30px #00000057;
+    font-family: 'PoppinsMedium';
+}
+
+.sisfo{
+    font-family: 'PoppinsLightItalic';
+    margin-top: 20px;
+}
+
+.lead{
+    font-family: 'PoppinsBold';
+    margin-top: 100px;
+}
+
+.lead1{
+    font-family:'PoppinsRegular';
+    margin-top: 35px;
+}
+
+// tp&edp
+.navv2 {
+    background: url(img/kd2.png);
+    background-position-x: -55px;
+    background-position-y: -40px;
+    background-size: 1520px;
+    width: 100%;
+    height: 155px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+}
+a img{
+    width: 120px;
+    // margin-top: 40px;
+}
+
+.tombol {
+    color: black;
+    box-shadow: 2px 2px 30px #00000026;
+    border-radius: 10px; 
+    background-color: #79c9cf; 
+}
+.abc {
+    color: black;
+    background-color:#E4F4F6;
+}
+.edtable {
+    text-align: center;
+}
+
+.edtable img {
+    box-shadow: 0px 0px 1px #79c9cf; 
+    width: 150px;
+    height: 217px;
+}
+
+
+#inputGroup-sizing-default {
+    background-color: #E4F4F6;
+}
